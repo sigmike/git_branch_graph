@@ -2,7 +2,6 @@
 require 'grit'
 include Grit
 repo = Repo.new(ARGV.first)
-ENV["GIT_DIR"] = ARGV.first + "/.git"
 
 def get_branches_by_sha(repo)
   branches = repo.branches + repo.remotes
@@ -16,7 +15,8 @@ def get_branches_by_sha(repo)
   shas
 end
 
-def get_parents(shas)
+def get_parents(repo, shas)
+  ENV["GIT_DIR"] = repo.path
   tree = {}
   shas.each do |sha, branches|
     commits = %x(git log --pretty='format:%H' #{sha}).split
@@ -48,7 +48,7 @@ def remove_grand_parents(tree)
 end
 
 shas = get_branches_by_sha(repo)
-tree = get_parents(shas)
+tree = get_parents(repo, shas)
 remove_grand_parents(tree)
 
 puts "digraph git {"
