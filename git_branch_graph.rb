@@ -56,7 +56,7 @@ puts "  edge [colorscheme=paired4 color=2 dir=back]"
 tree.each do |branch, parents|
   current = (branch == repo.head.name.inspect)
   if current
-    puts "#{branch} [color=3]"
+    puts "  #{branch} [color=3]"
   end
   puts "  #{branch} -> { #{parents.join " "} }" + (current ? " [color=4]" : "")
 end
