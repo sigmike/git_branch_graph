@@ -23,7 +23,6 @@ def get_parents(repo, shas)
     parents = []
     shas.each do |other_sha, other_branches|
       next if other_sha == sha
-      #other_commits = repo.git.rev_list({}, other_sha).split
       if commits.include?(other_sha)
         parents << other_branches
       end
