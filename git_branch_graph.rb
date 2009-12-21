@@ -53,7 +53,7 @@ remove_grand_parents(tree)
 
 puts "digraph git {"
 puts "  node [colorscheme=paired4 color=1 style=filled]"
-puts "  edge [colorscheme=paired4 color=2]"
+puts "  edge [colorscheme=paired4 color=2 dir=back]"
 tree.each do |branch, parents|
   current = (branch == repo.head.name.inspect)
   if current
