@@ -52,11 +52,13 @@ tree = get_parents(repo, shas)
 remove_grand_parents(tree)
 
 puts "digraph git {"
-puts "  node [colorscheme=paired3 color=1 style=filled]"
+puts "  node [colorscheme=paired4 color=1 style=filled]"
+puts "  edge [colorscheme=paired4 color=2]"
 tree.each do |branch, parents|
-  if branch == repo.head.name.inspect
-    puts "#{branch} [color=2]"
+  current = (branch == repo.head.name.inspect)
+  if current
+    puts "#{branch} [color=3]"
   end
-  puts "  #{branch} -> { #{parents.join " "} }"
+  puts "  #{branch} -> { #{parents.join " "} }" + (current ? " [color=4]" : "")
 end
 puts "}"
