@@ -1,7 +1,7 @@
 
 require 'grit'
 include Grit
-repo = Repo.new(ARGV.first)
+repo = Repo.new(ARGV.first || ".")
 
 def get_branches_by_sha(repo)
   branches = repo.branches + repo.remotes
